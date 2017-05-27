@@ -12,7 +12,10 @@ app.set("view engine","ejs");
 campGrounds = [{name:"Rest", image:"https://images.pexels.com/photos/48638/pexels-photo-48638.jpeg?h=350&auto=compress&cs=tinysrgb"},
     {name:"Play Time", image:"https://images.pexels.com/photos/167701/pexels-photo-167701.jpeg?h=350&auto=compress&cs=tinysrgb"},
     {name:"Cat's Easy Dive", image:"https://images.pexels.com/photos/45241/tent-camp-night-star-45241.jpeg?h=350&auto=compress&cs=tinysrgb"},
-    {name:"Take it and Go", image:"https://images.pexels.com/photos/266751/pexels-photo-266751.jpeg?h=350&auto=compress&cs=tinysrgb"}];
+    {name:"Take it and Go", image:"https://images.pexels.com/photos/266751/pexels-photo-266751.jpeg?h=350&auto=compress&cs=tinysrgb"},
+    {name:"Rest", image:"https://images.pexels.com/photos/48638/pexels-photo-48638.jpeg?h=350&auto=compress&cs=tinysrgb"},
+    {name:"Play Time", image:"https://images.pexels.com/photos/167701/pexels-photo-167701.jpeg?h=350&auto=compress&cs=tinysrgb"},
+    {name:"Cat's Easy Dive", image:"https://images.pexels.com/photos/45241/tent-camp-night-star-45241.jpeg?h=350&auto=compress&cs=tinysrgb"}];
 
 
 app.get("/", function (req,res) {
