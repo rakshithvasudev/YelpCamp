@@ -43,6 +43,11 @@ app.get("/campgrounds/new", function (req,res) {
     res.render("new");
 });
 
+app.get("/campgrounds/dashboard", function (req,res) {
+    res.render("dashboard");
+});
+
+
 
 app.listen(3000, function () {
     console.log('Yelp Camp listening on port 3000!');
