@@ -32,7 +32,7 @@ app.get("/campgrounds", function (req, res) {
         if (err)
             console.log("Error occured: "+err);
         else
-            res.render("campgrounds", {campgrounds: campgrounds});
+            res.render("index", {campgrounds: campgrounds});
     });
 });
 
@@ -46,7 +46,7 @@ app.post("/campgrounds", function (req, res) {
         else
             console.log("Added Campground: "+ campground);
         // return to the campgrounds page
-        res.redirect("/campgrounds");
+        res.redirect("/index");
     });
 });
 
@@ -55,8 +55,14 @@ app.get("/campgrounds/new", function (req, res) {
     res.render("new");
 });
 
-app.get("/campgrounds/new", function (req, res) {
-    res.render("new");
+app.get("/campgrounds/:id", function (req, res) {
+    Campground.findById(req.params.id, function (err,campgroundFound) {
+       if (err)
+            console.log("error: " +err);
+        else
+            res.render("show",{campground:campgroundFound});
+    });
+
 });
 
 
