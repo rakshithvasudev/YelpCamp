@@ -15,7 +15,8 @@ app.set("view engine", "ejs");
 // Creating a Campground schema
 var campgroundSchema = new mongoose.Schema({
 name:String,
-image:String
+image:String,
+description: String
 });
 
 // Creating a model for campground
@@ -37,7 +38,7 @@ app.get("/campgrounds", function (req, res) {
 
 
 app.post("/campgrounds", function (req, res) {
-    var currentGround = {name: req.body.campgroundname, image: req.body.campgroundurl};
+    var currentGround = {name: req.body.campgroundname, image: req.body.campgroundurl, description:req.body.campdescription};
     // Add to the database
     Campground.create(currentGround,function (err,campground) {
         if (err)
@@ -53,6 +54,11 @@ app.post("/campgrounds", function (req, res) {
 app.get("/campgrounds/new", function (req, res) {
     res.render("new");
 });
+
+app.get("/campgrounds/new", function (req, res) {
+    res.render("new");
+});
+
 
 app.get("/campgrounds/dashboard", function (req, res) {
     res.render("dashboard");
