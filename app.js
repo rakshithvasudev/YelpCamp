@@ -12,24 +12,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
 
-//Campground schema
+// Creating a Campground schema
 var campgroundSchema = new mongoose.Schema({
 name:String,
 image:String
 });
 
-
+// Creating a model for campground
 var Campground = mongoose.model("Campground",campgroundSchema);
-
-Campground.create({name: "Rest",
-    image: "https://images.pexels.com/photos/48638/pexels-photo-48638.jpeg?h=350&auto=compress&cs=tinysrgb"
-}, function (err,campground) {
-    if(err)
-        console.log("Error!: "+err);
-    else
-        console.log("created :" + campground);
-});
-
 
 app.get("/", function (req, res) {
     res.render("landing");
@@ -37,9 +27,11 @@ app.get("/", function (req, res) {
 
 app.get("/campgrounds", function (req, res) {
     Campground.find({}, function (err,campgrounds) {
-        res.render("campgrounds", {campgrounds: campgrounds});
+        if (err)
+            console.log("Error occured: "+err);
+        else
+            res.render("campgrounds", {campgrounds: campgrounds});
     });
-
 });
 
 
