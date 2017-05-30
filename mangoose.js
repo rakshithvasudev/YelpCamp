@@ -23,9 +23,9 @@ var Cat = mongoose.model("Cat", catSchema);
 // });
 
 
-Cat.find({name:"George"}, function (err,cats) {
+Cat.find({name: "George"}, function (err, cats) {
     if (err)
-           console.log("Error!");
+        console.log("Error!");
     else
         console.log("All");
         console.log(cats);

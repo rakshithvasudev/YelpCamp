@@ -2,17 +2,36 @@
  * Created by Rakshith on 5/25/2017.
  */
 var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
+app = express();
+bodyParser = require('body-parser');
+mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/test');
 
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
-campGrounds = [{
-    name: "Rest",
+
+//Campground schema
+var campgroundSchema = new mongoose.Schema({
+name:String,
+image:String
+});
+
+
+var Campground = mongoose.model("Campground",campgroundSchema);
+
+Campground.create({name: "Rest",
     image: "https://images.pexels.com/photos/48638/pexels-photo-48638.jpeg?h=350&auto=compress&cs=tinysrgb"
-},
+}, function (err,campground) {
+    if(err)
+        console.log("Error!: "+err);
+    else
+        console.log("created :" + campground);
+});
+
+
+campGrounds = [
     {
         name: "Play Time",
         image: "https://images.pexels.com/photos/167701/pexels-photo-167701.jpeg?h=350&auto=compress&cs=tinysrgb"
@@ -44,7 +63,10 @@ app.get("/", function (req, res) {
 });
 
 app.get("/campgrounds", function (req, res) {
-    res.render("campgrounds", {campgrounds: campGrounds});
+    Campground.find({}, function (err,campgrounds) {
+        res.render("campgrounds", {campgrounds: campgrounds});
+    });
+
 });
 
 
