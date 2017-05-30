@@ -46,7 +46,7 @@ app.post("/campgrounds", function (req, res) {
         else
             console.log("Added Campground: "+ campground);
         // return to the campgrounds page
-        res.redirect("/index");
+        res.redirect("/campgrounds");
     });
 });
 
