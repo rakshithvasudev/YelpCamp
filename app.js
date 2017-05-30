@@ -26,6 +26,7 @@ app.get("/", function (req, res) {
 });
 
 app.get("/campgrounds", function (req, res) {
+    // Get all Campgrounds from Database and display.
     Campground.find({}, function (err,campgrounds) {
         if (err)
             console.log("Error occured: "+err);
@@ -37,13 +38,15 @@ app.get("/campgrounds", function (req, res) {
 
 app.post("/campgrounds", function (req, res) {
     var currentGround = {name: req.body.campgroundname, image: req.body.campgroundurl};
+    // Add to the database
     Campground.create(currentGround,function (err,campground) {
         if (err)
             console.log("Error occured: "+err);
         else
             console.log("Added Campground: "+ campground);
+        // return to the campgrounds page
+        res.redirect("/campgrounds");
     });
-    res.redirect("/campgrounds");
 });
 
 
